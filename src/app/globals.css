@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Vazirmatn', system-ui, sans-serif;
+  --font-display: 'Vazirmatn', system-ui, sans-serif;
+  --color-ink: #0a0a0a;
+  --color-ink-2: #141414;
+  --color-ink-3: #1c1c1c;
+  --color-gold: #c9a961;
+  --color-gold-2: #b8975a;
+  --color-cream: #f5f1e8;
+}
+
+html, body {
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+  background: #0a0a0a;
+  color: #f5f1e8;
+  direction: rtl;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #c9a961;
+  color: #0a0a0a;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9a961;
+}
+
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201, 169, 97, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(201, 169, 97, 0.08) 0%, transparent 60%),
+    #0a0a0a;
+}
+
+.gold-glow {
+  text-shadow: 0 0 40px rgba(201, 169, 97, 0.3);
+}
+
+.shine {
+  background: linear-gradient(110deg, #c9a961 0%, #e8d9a8 45%, #c9a961 55%, #8a7240 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #c9a961 0%, #a8884d 100%);
+  color: #0a0a0a;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #e8d9a8 0%, #c9a961 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-gold:hover::before {
+  opacity: 1;
+}
+.btn-gold span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-outline {
+  border: 1px solid rgba(245, 241, 232, 0.2);
+  color: #f5f1e8;
+  transition: all 0.3s ease;
+}
+.btn-outline:hover {
+  border-color: #c9a961;
+  color: #c9a961;
+}
+
+.card-hover {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-8px);
+}
+
+.product-image-wrap {
+  background: linear-gradient(135deg, #1c1c1c 0%, #0a0a0a 100%);
+  position: relative;
+  overflow: hidden;
+}
+.product-image-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(201, 169, 97, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.luxury-border {
+  border: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.divider-gold {
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.5), transparent);
+  height: 1px;
+}
+
+/* ── Hero: floating golden particles ── */
+@keyframes particleFloat {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: var(--p-opacity, 0.3); }
+  90%  { opacity: var(--p-opacity, 0.3); }
+  100% { transform: translateY(-110vh) translateX(var(--float-drift, 0px)); opacity: 0; }
+}
+.particle-float {
+  animation: particleFloat var(--float-dur, 16s) var(--float-delay, 0s) linear infinite;
+}
+
+/* ── Hero: SVG circle countdown ── */
+@keyframes circleFill {
+  from { stroke-dashoffset: 138.23; }
+  to   { stroke-dashoffset: 0; }
+}
+.animate-circle-fill {
+  animation: circleFill linear forwards;
+}
+
+/* ── Hero: golden text glow ── */
+.hero-gold-glow {
+  text-shadow:
+    0 0 60px rgba(201, 169, 97, 0.25),
+    0 0 120px rgba(201, 169, 97, 0.1);
+}
